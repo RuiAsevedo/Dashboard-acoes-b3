@@ -1,37 +1,38 @@
-# Dashboard de Análise de Ações da B3 (Terminal BI)
+# Analisador de Ativos da B3 (Terminal BI)
 
-Este projeto é uma ferramenta de Business Intelligence e Análise de Dados desenvolvida em Python para extração, processamento e visualização de métricas de ativos da bolsa brasileira (B3).
+Script em Python desenvolvido para extração, processamento e cálculo de KPIs financeiros de ativos listados na B3. O projeto atua como um pipeline simplificado de ETL, automatizando a coleta de dados de mercado e gerando um sumário executivo no terminal.
 
-O script automatiza o fluxo de ETL (Extração, Transformação e Carga), substituindo a coleta manual por uma análise programática direta no terminal.
+## Tecnologias e Bibliotecas
+- Python 3.x
+- yfinance (Integração de dados de mercado)
+- pandas (Manipulação e transformação de DataFrames)
 
-## Objetivo do Projeto
-Demonstrar a aplicação de lógica de programação na resolução de problemas do mercado financeiro, construindo um pipeline de dados capaz de gerar *insights* rápidos para tomada de decisão.
+## Arquitetura do Script
+A aplicação é dividida em três etapas principais:
 
-## Tecnologias Utilizadas
-- **Python 3:** Linguagem principal.
-- **yfinance:** Extração de dados reais e atualizados do mercado financeiro (API do Yahoo Finance).
-- **pandas:** Manipulação de DataFrames e cálculo de indicadores (KPIs).
+1. **Coleta de Dados:** Utiliza a biblioteca `yfinance` para instanciar o objeto Ticker e extrair o histórico de preços (OHLC) do último 1 ano.
+2. **Transformação e Cálculo de KPIs:** Utiliza métodos do `pandas` (como `.iloc`, `.max()`, `.min()`) para calcular:
+- Preço de fechamento atual e inicial do período.
+- Retorno percentual anualizado.
+- Volatilidade bruta (Máxima e Mínima do período).
+3. **Output:** Formatação dos dados estruturados em uma interface baseada em texto (CLI), incluindo uma verificação condicional básica para determinar a direção da tendência do ativo.
 
-## Funcionalidades (Pipeline de Dados)
-1. **Extração (Data Extraction):** O usuário inputa o *ticker* da ação (ex: `ITUB4.SA`, `PETR4.SA`) e o script coleta o histórico de cotações do último ano.
-2. **Transformação (Data Transformation):** O motor calcula KPIs essenciais para o mercado financeiro:
-- Preço de Fechamento Atual.
-- Retorno Percentual (ROI) no período de 1 ano.
-- Volatilidade e limites operacionais (Máxima e Mínima do período).
-3. **Visualização (Data Visualization):** Geração de um "Dashboard Executivo" em formato de texto no terminal, acompanhado de uma regra condicional simples que gera um insight automático sobre a valorização ou desvalorização do ativo.
+## Instruções de Execução
 
-## Como Executar
-Para rodar este projeto na sua máquina, certifique-se de ter o Python instalado e siga os passos:
+Requisitos prévios: Python 3 e gerenciador de pacotes pip instalados.
 
-1. Clone este repositório:
+1. Clone o repositório:
 `git clone https://github.com/RuiAsevedo/dashboard-acoes-b3.git`
 
-2. Instale as dependências necessárias:
-`pip install pandas yfinance`
+2. Instale as dependências:
+`pip install -r requirements.txt` *(ou utilize `pip install pandas yfinance`)*
 
-3. Execute o script no terminal:
+3. Execute a aplicação:
 `python3 analise_b3.py`
 
+O script solicitará a entrada do ticker (ex: ITUB4.SA) e imprimirá a análise processada no terminal.
+
 ---
-*Desenvolvido por Rui Charles Asevedo Chaves - Analista de TI focado em Dados & Automação.*
+*Autor: Rui Asevedo - Analista de Dados / Automação*
+
 
